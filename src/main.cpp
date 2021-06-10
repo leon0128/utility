@@ -3,16 +3,22 @@
 #include <unordered_map>
 #include <array>
 
+#include "system.hpp"
 #include "output.hpp"
 #include "random.hpp"
+#include "timer.hpp"
 
 void outputTest();
 void randomTest();
+void timerTest();
+void systemTest();
 
 int main(int argc, char **argv)
 {
     outputTest();
     randomTest();
+    timerTest();
+    systemTest();
 
     return 0;
 }
@@ -37,4 +43,24 @@ void randomTest()
         std::cout << "random: "
             << RANDOM::RAND.random()
             << std::endl;
+}
+
+void timerTest()
+{
+    TIMER::Timer timer;
+
+    timer.start();
+    timer.stop();
+
+    std::cout << "timer: "
+        << timer.count<std::chrono::nanoseconds>()
+        << std::endl;
+}
+
+void systemTest()
+{
+    std::cout << "echo \"echo\"\n"
+        << std::flush;
+    SYSTEM::system("echo"
+        , "\"echo\"");
 }
