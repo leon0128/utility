@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <array>
 
+#include "file.hpp"
 #include "system.hpp"
 #include "output.hpp"
 #include "random.hpp"
@@ -12,6 +13,7 @@ void outputTest();
 void randomTest();
 void timerTest();
 void systemTest();
+void fileTest();
 
 int main(int argc, char **argv)
 {
@@ -19,6 +21,7 @@ int main(int argc, char **argv)
     randomTest();
     timerTest();
     systemTest();
+    fileTest();
 
     return 0;
 }
@@ -63,4 +66,27 @@ void systemTest()
         << std::flush;
     SYSTEM::system("echo"
         , "\"echo\"");
+}
+
+void fileTest()
+{
+    std::filesystem::path path{"./Makefile"};
+
+    std::cout << "Is valid "
+        <<  path.string()
+        << " ?: "
+        << PATH::isValid(path, std::filesystem::file_type::regular)
+        << std::endl;
+    std::cout << "Is exists "
+        << path.string()
+        << " ?: "
+        << PATH::isExist(path, std::filesystem::file_type::regular)
+        << std::endl;
+    std::string file;
+    PATH::read(path, file);
+    std::cout << "contents of "
+        << path.string()
+        << std::endl;
+    std::cout << file
+        << std::endl;
 }
