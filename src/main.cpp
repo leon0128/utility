@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <array>
 
+#include "variant.hpp"
 #include "file.hpp"
 #include "system.hpp"
 #include "output.hpp"

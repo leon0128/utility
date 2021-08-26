@@ -56,7 +56,7 @@ bool write(const std::filesystem::path &path
 
     if(isOverwritten
         && isExist(path, std::filesystem::file_type::regular))
-        fstr.open(path);
+        fstr.open(path, std::ios_base::out);
     else
     {
         if(!isValid(path, std::filesystem::file_type::regular))
